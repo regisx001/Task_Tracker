@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring
+    username: admin
+    password: admin123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      # Configures the Hibernate `ddl-auto` property, which determines the schema management strategy.
+      # Setting it to `update` allows Hibernate to automatically update the database schema to match
+      # the entity mappings without dropping existing data. This is useful for development environments
+      # but should be used with caution in production as it may lead to unintended schema changes.
+      ddl-auto: update
