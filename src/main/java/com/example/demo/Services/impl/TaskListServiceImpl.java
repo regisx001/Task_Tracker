@@ -2,6 +2,7 @@ package com.example.demo.Services.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -47,6 +48,25 @@ public class TaskListServiceImpl implements TaskListService {
     @Override
     public Optional<TaskList> getTaskList(UUID id) {
         return taskListRepository.findById(id);
+    }
+
+    @Override
+    public TaskList updateTaskList(UUID taskListId, TaskList taskList) {
+        if (null == taskList.getId()) {
+            throw new IllegalArgumentException("Task list Id must have an Id");
+        }
+
+        if (!Objects.equals(taskListId, taskList.getId())) {
+            throw new IllegalArgumentException("Attenping to change tasklist Id, this is not permitted");
+        }
+
+        TaskList existingTaskList = taskListRepository.findById(taskListId)
+                .orElseThrow(() -> new IllegalArgumentException("Task list not found"));
+
+        existingTaskList.setTitle(taskList.getTitle());
+        existingTaskList.setDescription(taskList.getDescription());
+        existingTaskList.setUpdatedAt(LocalDateTime.now());
+        return taskListRepository.save(existingTaskList);
     }
 
 }
