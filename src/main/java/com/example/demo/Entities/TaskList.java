@@ -20,7 +20,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "tasks_list")
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter

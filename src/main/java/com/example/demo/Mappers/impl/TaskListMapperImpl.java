@@ -24,7 +24,7 @@ public class TaskListMapperImpl implements TaskListMapper {
     @Override
     public TaskList fromDto(TaskListDto taskListDto) {
         return new TaskList(taskListDto.id(), taskListDto.title(),
-                taskListDto.desctiption(),
+                taskListDto.description(),
                 Optional.ofNullable(taskListDto.tasks())
                         .map(tasks -> tasks.stream().map(taskMapper::fromDto).toList()).orElse(null),
                 null, null
