@@ -2,6 +2,8 @@ package com.example.demo.Services.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,11 @@ public class TaskListServiceImpl implements TaskListService {
                 null,
                 now,
                 now));
+    }
+
+    @Override
+    public Optional<TaskList> getTaskList(UUID id) {
+        return taskListRepository.findById(id);
     }
 
 }
